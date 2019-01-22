@@ -7,4 +7,84 @@
      <!-- Import angular framework & include JS file-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="./WeatherScript.js"></script>
-</head
+</head>
+
+<!--
+    The ng-app directive tells AngularJS that this is the root element of the AngularJS application. All AngularJS applications must have a root element. 
+    You can only have one ng-app directive in your HTML document. 
+    If more than one ng-app directive appears, the first appearance will be used.
+
+    ng-init directive initializes the app on first startup. Here it calls the two functions which get response data from server
+--> 
+
+<body>
+    <div ng-app="weatherApp" ng-controller="weatherCantroller" ng-init="weatherService()">
+
+        <div class="container">
+            <br />
+             <!-- Davis Weather -->
+            <div style="width: 500px; margin-left:auto; margin-right:auto;">
+                <h4>{{cityName}} Weather</h4>
+            </div>
+            <div class="card" style="width: 500px; box-shadow:1px 2px 2px grey; margin-left:auto; margin-right:auto;">
+
+                <div class="card-body">
+                    <h5 class="card-title"><img src="{{weatherResult.IconUrl}}" />{{weatherCondition}}</h5>
+                    <p class="card-text">
+
+                        <table class="table table-borderless">
+                            <tr>
+                                <th></th>
+                                <th>Current</th>
+                                <th>Low</th>
+                                <th>High</th>
+                            </tr>
+                            <tr>
+                                <td>Farenheit</td>
+                                <td>{{FTemps[0]}}</td>
+                                <td>{{FTemps[1]}}</td>
+                                <td>{{FTemps[2]}}</td>
+                            </tr>
+                            <tr>
+                                <td>Celsius</td>
+                                <td>{{CTemps[0]}}</td>
+                                <td>{{CTemps[1]}}</td>
+                                <td>{{CTemps[2]}}</td>
+                            </tr>
+                            <tr>
+                                <td>Kelvin</td>
+                                <td>{{KTemps[0]}}</td>
+                                <td>{{KTemps[1]}}</td>
+                                <td>{{KTemps[2]}}</td>
+                            </tr>
+                        </table>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Condition : {{Weather Condition}}</td>
+                            </tr>
+                            <tr>
+                                <td>Wind Speed : {{Weather Wind}}</td>
+                            </tr>
+                            <tr>
+                                <td>Humidity : {{Weather Humidity}} &#176;</td>
+                            </tr>
+
+                        </table>
+
+                        <small>Weather data provided by OpenWeatherMap/</small>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <div style="width: 500px; margin-left:auto; margin-right:auto; text-align:right;">
+        <button class="btn btn-success" ng-click="weatherService()">Refresh</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<html>
