@@ -18,20 +18,20 @@
 --> 
 
 <body>
-    <div ng-app="weatherApp" ng-controller="weatherCantroller" ng-init="weatherService()">
+    <div ng-app="weatherApp" ng-controller="weatherCantroller" ng-init="funCall()">
 
         <div class="container">
             <br />
-             <!-- Davis Weather -->
+            <!-- Davis Weather -->
             <div style="width: 500px; margin-left:auto; margin-right:auto;">
-                <h4>{{cityName}} Weather</h4>
+                <h4>{{weatherResult.cityName}} Weather</h4>
             </div>
+
             <div class="card" style="width: 500px; box-shadow:1px 2px 2px grey; margin-left:auto; margin-right:auto;">
-
                 <div class="card-body">
-                    <h5 class="card-title"><img src="{{weatherResult.IconUrl}}" />{{weatherCondition}}</h5>
+                    <h5 class="card-title"><img src="{{weatherResult.IconUrl}}" />{{weatherResult.condition}}</h5>
+                    
                     <p class="card-text">
-
                         <table class="table table-borderless">
                             <tr>
                                 <th></th>
@@ -60,29 +60,88 @@
                         </table>
                         <table class="table table-borderless">
                             <tr>
-                                <td>Condition : {{Weather Condition}}</td>
+                                <td>Condition : {{weatherResult.Description}}</td>
                             </tr>
                             <tr>
-                                <td>Wind Speed : {{Weather Wind}}</td>
+                                <td>Wind Speed : {{weatherResult.Wind}}</td>
                             </tr>
                             <tr>
-                                <td>Humidity : {{Weather Humidity}} &#176;</td>
+                                <td>Humidity : {{weatherResult.Humidity}} &#176;</td>
                             </tr>
 
                         </table>
 
-                        <small>Weather data provided by OpenWeatherMap/</small>
+                        <small>Weather data provided by OpenWeatherMap.</small>
                     </p>
                 </div>
             </div>
-
         </div>
-        <br/>
-        <div style="width: 500px; margin-left:auto; margin-right:auto; text-align:right;">
-        <button class="btn btn-success" ng-click="weatherService()">Refresh</button>
+        <br />
+        <br />
+
+        <!-- Sacramento Weather -->
+        <div style="width: 500px; margin-left:auto; margin-right:auto;">
+            <h4>{{weatherResult2.cityName}} Weather</h4>
+        </div>
+        <div class="card" style="width: 500px; box-shadow:1px 2px 2px grey; margin-left:auto; margin-right:auto;">
+
+            <div class="card-body">
+                <h5 class="card-title"><img src="{{weatherResult2.IconUrl}}" />{{weatherResult2.condition}}</h5>
+                <p class="card-text">
+
+                    <table class="table table-borderless">
+                        <tr>
+                            <th></th>
+                            <th>Current</th>
+                            <th>Low</th>
+                            <th>High</th>
+                        </tr>
+                        <tr>
+                            <td>Farenheit</td>
+                            <td>{{FTemps2[0]}}</td>
+                            <td>{{FTemps2[1]}}</td>
+                            <td>{{FTemps2[2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Celsius</td>
+                            <td>{{CTemps2[0]}}</td>
+                            <td>{{CTemps2[1]}}</td>
+                            <td>{{CTemps2[2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Kelvin</td>
+                            <td>{{KTemps2[0]}}</td>
+                            <td>{{KTemps2[1]}}</td>
+                            <td>{{KTemps2[2]}}</td>
+                        </tr>
+                    </table>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td>Condition : {{weatherResult2.Description}}</td>
+                        </tr>
+                        <tr>
+                            <td>Wind Speed : {{weatherResult2.Wind}}</td>
+                        </tr>
+                        <tr>
+                            <td>Humidity : {{weatherResult2.Humidity}} &#176;</td>
+                        </tr>
+
+                    </table>
+
+                    <small>Weather data provided by OpenWeatherMap.</small>
+                </p>
+            </div>
         </div>
 
     </div>
+    <br />
+
+    <div style="width: 500px; margin-left:auto; margin-right:auto; text-align:right;">
+        <button class="btn btn-success" ng-click="funCall()">Refresh Weather</button>
+    </div>
+
+    </div>
+    <br /><br /><br /><br /><br />
 </body>
 
 </html>
