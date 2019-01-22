@@ -1,4 +1,4 @@
-# Weather App by 
+# Weather App 
 ### An application to display weather information from Davis and Sacramento. 
 Weather data provided by OpenWeatherMaps
 
