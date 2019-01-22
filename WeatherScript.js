@@ -10,11 +10,6 @@ app.controller('weatherCantroller', function ($scope, $http) {
         $scope.weatherService2();
     }
 
-    /*
-    Transforming from table format to square-post like structure,
-    like the posts on Aggiefeed, is done using HTML + CSS in Index.HTML
-    */
-
     // WeatherService for Davis
     $scope.weatherService = function () {
         $http({
