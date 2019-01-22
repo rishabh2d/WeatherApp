@@ -1,6 +1,6 @@
 // module is similar to main() in other languages. it takes in its name and dependancies as param
 var app = angular.module('weatherApp', []);
-app.controller('weatherController', function ($scope, $http) {
+app.controller('weatherCantroller', function ($scope, $http) {
 
     $scope.weatherResult = {};  // Weather details about Davis
     $scope.weatherResult2 = {};  // Weather details aobut Sacramento
@@ -9,6 +9,11 @@ app.controller('weatherController', function ($scope, $http) {
         $scope.weatherService();
         $scope.weatherService2();
     }
+
+    /*
+    Transforming from table format to square-post like structure,
+    like the posts on Aggiefeed, is done using HTML + CSS in Index.HTML
+    */
 
     // WeatherService for Davis
     $scope.weatherService = function () {
@@ -34,7 +39,7 @@ app.controller('weatherController', function ($scope, $http) {
     $scope.weatherService2 = function () {
         $http({
             method: 'POST',
-            url: 'http://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q=Sacramento'
+            url: 'http://api.openweathermap.org/data/2.5/weather?appid=7b7295e44d9398d14962090d05202166&q=Sacramento'
         }).then(function (response) {
             $scope.weatherResult2.cityName = response.data.name;
             $scope.weatherResult2.condition = response.data.weather[0].main;
@@ -74,5 +79,39 @@ app.controller('weatherController', function ($scope, $http) {
 
     }
 
+    // Get temp for the Sacramento
+    $scope.GetTemperature2 = function (temps) {
+
+        var FCurrent = $scope.GetFarenheit(temps.temp).toFixed(1);
+        var FLow = $scope.GetFarenheit(temps.temp_min).toFixed(1);
+        var FHigh = $scope.GetFarenheit(temps.temp_max).toFixed(1);
+
+        $scope.FTemps2 = [FCurrent, FLow, FHigh];
+
+        var CCurrent = $scope.GetCelsius(temps.temp).toFixed(1);
+        var CLow = $scope.GetCelsius(temps.temp_min).toFixed(1);
+        var CHigh = $scope.GetCelsius(temps.temp_max).toFixed(1);
+
+        $scope.CTemps2 = [CCurrent, CLow, CHigh];
+
+        var KCurrent = $scope.GetKelvin(temps.temp).toFixed(1);
+        var KLow = $scope.GetKelvin(temps.temp_min).toFixed(1);
+        var KHigh = $scope.GetKelvin(temps.temp_max).toFixed(1);
+
+        $scope.KTemps2 = [KCurrent, KLow, KHigh];
+
+    }
+
+    $scope.GetFarenheit = function GetFarenheit(temp) {
+        return ((temp - 273) * (9 / 5)) + 32;
+    };
+
+    $scope.GetKelvin = function GetKelvin(temp) {
+        return temp;
+    };
+
+    $scope.GetCelsius = function GetCelsius(temp) {
+        return temp - 273;
+    };
 
 });
