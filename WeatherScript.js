@@ -1,6 +1,6 @@
 // module is similar to main() in other languages. it takes in its name and dependancies as param
 var app = angular.module('weatherApp', []);
-app.controller('weatherCantroller', function ($scope, $http) {
+app.controller('weatherController', function ($scope, $http) {
 
     $scope.weatherResult = {};  // Weather details about Davis
     $scope.weatherResult2 = {};  // Weather details aobut Sacramento
