@@ -1,21 +1,13 @@
 // module is similar to main() in other languages. it takes in its name and dependancies as param
 var app = angular.module('weatherApp', []);
-app.controller('weatherController', function ($scope, $http) {
+app.controller('weatherController', function ($scope,weatherService) {
 
     $scope.weatherResult = {};  // Weather details about Davis
     $scope.weatherResult2 = {};  // Weather details aobut Sacramento
 
     $scope.funCall = function () {
-        $scope.weatherService();
-        $scope.weatherService2();
-    }
-
-    // WeatherService for Davis
-    $scope.weatherService = function () {
-        $http({
-            method: 'POST',  // POST method to create
-            url: 'http://api.openweathermap.org/data/2.5/weather?appid=7b7295e44d9398d14962090d05202166&q=Davis'
-        }).then(function (response) {  // The HTTP response (response) is a network packet sent by the server responding to HTTP request
+        // $scope.weatherService();
+        weatherService.weatherService1().then(function (response) {  // The HTTP response (response) is a network packet sent by the server responding to HTTP request
             $scope.weatherResult.cityName = response.data.name;
             $scope.weatherResult.condition = response.data.weather[0].main;
             $scope.weatherResult.Description = response.data.weather[0].description;
@@ -28,14 +20,8 @@ app.controller('weatherController', function ($scope, $http) {
         }, function errorCallback(response) {
             $scope.ErrorResult = response;
         });
-    }
 
-    // WeatherService for Sacramento
-    $scope.weatherService2 = function () {
-        $http({
-            method: 'POST',
-            url: 'http://api.openweathermap.org/data/2.5/weather?appid=7b7295e44d9398d14962090d05202166&q=Sacramento'
-        }).then(function (response) {
+        weatherService.weatherService2().then(function (response) {
             $scope.weatherResult2.cityName = response.data.name;
             $scope.weatherResult2.condition = response.data.weather[0].main;
             $scope.weatherResult2.Description = response.data.weather[0].description;
@@ -109,4 +95,4 @@ app.controller('weatherController', function ($scope, $http) {
         return temp - 273;
     };
 
-});
+})
